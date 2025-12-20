@@ -1,0 +1,156 @@
+# -----------------------------
+# Material Theme Configuration
+# ------------------------------
+# red, pink, purple, deep purple, indigo, 
+# blue, light blue, cyan, teal, green, light green, 
+# lime, yellow, amber, orange, deep orange, brown, 
+# grey, blue grey , black, white
+#    primary: pink # teal
+#    accent: indigo
+#
+# *** FONT ***
+# Guide: https://squidfunk.github.io/mkdocs-material/setup/changing-the-fonts/?h=fonts
+# Google Fonts Supported: https://fonts.google.com/
+#
+# *** BLOG ***
+# https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/
+# ---------------------------------
+# General ...................................................
+site_name: Pre-Day Workshop
+site_url: https://haew0nsh1n.github.io/ignite25-kor-observe-manage-and-scale-agentic-ai-apps-with-microsoft-foundry
+site_author: Haewon Shin
+site_description: >-
+  Pre-day workshop at Microsoft Ignite 2025 in Korean
+
+# Repository .................................................
+repo_name: haew0nsh1n/ignite25-kor-observe-manage-and-scale-agentic-ai-apps-with-microsoft-foundry
+repo_url: https://github.com/haew0nsh1n/ignite25-kor-observe-manage-and-scale-agentic-ai-apps-with-microsoft-foundry
+
+# Copyright ...................................................
+copyright: >
+   Copyright &copy; 2023 - present Microsoft
+extra_css:
+  - stylesheets/extra.css
+
+# Configuration ...............................................
+theme:
+  name: material
+  font:
+    code: Roboto Mono  #Monospaced
+    text: Roboto       #Regular
+  logo: assets/logo.svg
+  language: ko
+  custom_dir: docs/overrides
+
+  # Theme Modes ...............................................
+  palette:
+    # Palette toggle for light mode
+    - scheme: default 
+      primary: blue
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: blue
+      accent: light blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode 
+
+  # Theme Features ...............................................
+  features:
+    - navigation.instant
+    - navigation.expand             # sidebar collapsible sections open
+    - navigation.instant.progress   # load progress indicator
+    - navigation.tracking           # tracks anchor tags in URL
+    - navigation.tabs               # tabbed on desktop, single in mobile    
+    - navigation.tabs.sticky        # tabs stick when scrolling down
+    - header.sticky                 # header sticks to top when scrolling
+    - navigation.path               # add breadcrumbs
+    - navigation.indexes            # default index.md in folder is section page
+    - navigation.top
+    - toc.follow
+    - navigation.footer
+    - content.code.copy             # allow copy-paste from codeblocks
+    - content.tabs.link             # Ensures site-wide switch to same tab name
+    - navigation.sticky             # sticky sidebar navigation
+
+# Extras  ...............................................
+extra:
+  generator: false
+# Plugins  ...............................................
+plugins:
+  - search
+
+# Extensions  ...............................................
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      auto_title: true
+      linenums: true
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+
+# Navigation  ...............................................
+nav:
+  - Home: index.md
+  - Core Labs:
+    - Overview: core-labs/index.md
+    - Workshop Outline: core-labs/outline.md
+    - Lab 0. Setup & Validation:
+      - Overview: core-labs/0-setup/index.md
+      - Validate Setup: core-labs/0-setup/00-validate-setup.md
+    - Lab 1. Agent Architecture:
+      - Build Cora Retail Agent: core-labs/1-agents/11-agent-service.md
+    - Lab 2. Model Context:
+      - 2.1 Simulate Dataset: core-labs/2-models/21-simulate-dataset.md
+      - 2.2 Evaluate Models: core-labs/2-models/22-evaluate-models.md
+    - Lab 3. Model Customization:
+      - 3.1 Basic Fine-tuning: core-labs/3-customization/31-basic-finetuning.md
+      - 3.2 Custom Grader: core-labs/3-customization/32-custom-grader.md
+      - 3.3 Distillation Fine-tuning: core-labs/3-customization/33-distill-finetuning.md
+    - Lab 4. Evaluation Metrics:
+      - 4.1 First Evaluation: core-labs/4-evaluation/41-first-evaluation.md
+      - 4.4 Evaluate Agents: core-labs/4-evaluation/44-evaluate-agents.md
+    - Lab 5. Tracing & Telemetry:
+      - 5.1 Trace Cora Agent: core-labs/5-tracing/51-trace-cora-retail-agent.md
+    - Lab 6. Deployment & Insights:
+      - 6.0 Deployment: core-labs/6-deployment/60-deployment.md
+    - Lab 7. Teardown & Cleanup:
+      - Overview: core-labs/7-teardown/index.md
+  - More Labs:
+    - Overview: more-labs/index.md
+    - Lab 1. Agent Architecture:
+      - 1.2 Agent Framework: more-labs/1-agents/12-agent-framework.md
+    - Lab 4. Evaluation Metrics:
+      - 4.2 Evaluate Quality: more-labs/4-evaluation/42-evaluate-quality.md
+      - 4.3 Evaluate Safety: more-labs/4-evaluation/43-evaluate-safety.md
+    - Lab 5. Tracing & Telemetry:
+      - 5.0a Collect Span Snapshots: more-labs/5-tracing/50-collect-span-snapshots.md
+      - 5.0b Trace Agent Session: more-labs/5-tracing/50-trace-agent-session.md
+      - 5.1 OpenAI Planner: more-labs/5-tracing/51-openai-weekend-planner.md
+      - 5.2 LangChain Planner: more-labs/5-tracing/52-langchain-weekend-planner.md
+      - 5.3 LangGraph Music Router: more-labs/5-tracing/53-langgraph-music-router.md

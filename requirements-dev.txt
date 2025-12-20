@@ -1,0 +1,40 @@
+# ................ Documentation
+mkdocs-material==9.6.20
+
+# Install requirements specified for labs
+
+# ................ General Python Dependencies
+ipython
+python-dotenv   # Environment variables
+ipykernel       # Jupyter Notebooks
+uv              # MCP Server
+
+# ................ Data manipulation and visualization
+matplotlib==3.10.3  # For creating visualizations
+numpy==2.3.1        # For numerical computations
+pandas==2.3.3       # For data manipulation and analysis
+
+# ................ Azure AI SDK Dependencies
+azure-identity                          # For Azure authentication
+azure-search-documents==11.5.3          # For Azure AI Search
+azure-ai-evaluation==1.12.0             # For model evaluation (pinned to 1.12.0 - stable version from Oct 2, 2025)
+azure-mgmt-cognitiveservices            # For model deployment
+
+
+# Agent Framework - Frozen to specific versions for stability
+agent-framework==1.0.0b251108
+agent-framework-azure-ai==1.0.0b251108
+agent-framework-core==1.0.0b251108    
+
+## ............... Azure OpenAI Dependencies
+openai==2.7.2              # Azure OpenAI Python client
+requests==2.32.5           # HTTP requests library
+tiktoken==0.12.0           # Tokenization library for OpenAI models 
+
+## ............... Tracing Lab Dependencies
+opentelemetry-instrumentation-openai-agents-v2  # OpenTelemetry instrumentation
+langchain-azure-ai==1.0.3                       # LangChain Azure AI integration
+openai-agents==0.5.0                             # OpenAI Agents SDK
+rich==14.2.0                                     # Rich text and beautiful formatting
+azure-monitor-opentelemetry-exporter==1.0.0b44  # Azure Monitor OpenTelemetry exporter
+azure-monitor-opentelemetry==1.8.1               # Azure Monitor OpenTelemetry
