@@ -20,24 +20,30 @@ You will need:
 
 First, let's get you set up with a development environment for the lab. The repository is setup with a `devcontainer.json` that provides a pre-build development environment with all tools and dependencies installed. Let's activate that in three steps!
 
+먼저, 실습 개발 환경을 미리 준비해 보겠습니다. 저장소는 모든 도구와 의존성이 설치된 사전 구축 개발 환경을 제공하는 `devcontainer.json` 를 이용해서 설정되어 있습니다. 세 단계로 활성화합시다!
+
 ### 2.1. Fork This Repo
 
 1. [이 저장소](https://github.com/haew0nsh1n/ignite25-PREL13-observe-manage-and-scale-agentic-ai-apps-with-microsoft-foundry/fork)를 개인 저장소로 포크합니다. 
-1. 앞으로 이 저장소의 msignite2025-kor 포크를 실습에 사용합니다.
 1. 브라우저를 열고 이 저장소 파일을 탐색합니다.
 
 ### 2.2. VS Code IDE 구동
 
-1. 포크한 자신의 저장소를 git 명령어를 사용해서 로컬 디렉토리에 다운로드 합니다.
+1. 포크한 자신의 저장소를 git 명령어를 사용해서 로컬 폴더에 다운로드 합니다.
     ```bash title="" linenums="0"
-    git clone -b msignite2025-kor --single-branch https://github.com/<USERNAME>/ignite25-PREL13-observe-manage-and-scale-agentic-ai-apps-with-microsoft-foundry 
+    git clone https://github.com/<USERNAME>/ignite25-PREL13-observe-manage-and-scale-agentic-ai-apps-with-microsoft-foundry 
     ```
-1. VS Code IDE를 구동하고 이 디렉토리를 오픈합니다.
+1. VS Code IDE를 구동하고 이 폴더를 오픈합니다.
 
-### 2.3. Authenticate With Azure
+### 2.3. Dev Container 구동
 
-1. Open a terminal in that VS Code session - wait till prompt is active
-1. Run this command - follow steps to complete auth with **your** subscription
+VS Code IDE의 다음 메뉴를 선택해서 Dev Container를 구동합니다.
+- Show and Run Commands > Dev Containers: Rebuild Without Cache and Reopen in Container
+
+### 2.4. Authenticate With Azure
+
+1. VS Code 세션에서 터미널을 열어 프롬프트가 활성화될 때까지 기다리세요.
+1. 이 명령을 실행하세요 - **제공받은** 구독을 사용해서 인증을 완료하는 절차를 따라하세요.
 
     ```bash title="" linenums="0"
     az login
@@ -69,11 +75,11 @@ _Let's get this done_
 1. Then complete the interactive steps providing responses like this:
 
     1. Enter branch name: `for-release-1.0.4`
-    1. Enter environment name (고유한 자신의 환경을 입력하세요): `Ignite-PREL13`
+    1. Enter environment name (고유한 자신의 환경을 입력하세요): `Ignite-PREL-<USER_NAME>`
     1. Enter Azure region: `swedencentral`
     1. Enter Subscription ID: _your subscription id here_
     1. Do you want to activate Azure AI Search? (yes/no) [no]: yes
-    1. Use these defaults? (yes/no) [yes]: yes
+    1. Use these defaults? (yes/no) [yes]: no
     1. Proceed with deployment? (yes/no): yes
 
 1. When complete you should see:
@@ -115,13 +121,13 @@ _Let's get this done_
 
 ## ⚙️ 4. Set up `.env` variables.
 
-1. Make sure you are authenticated with Azure CLI.  We will use this to retrieve and create a `.env` file based on the `scripts/.env.sample` format
+1. Azure CLI로 인증되었는지 확인하세요. `scripts/.env.sample` 파일을 복사하여 `.env` 파일을 생성할 것입니다.
 
     ```bash
     az login
     ```
 
-1. Run this script from root of repo - it will create `.env` with values extracted by Azure CLI. _By default it looks for an `rg-Ignite-XXX` resource group but you can override it.
+1. 이 스크립트를 저장소 최상위 폴더에서 실행하세요 - Azure CLI에서 추출한 값으로 `.env` 파일이 생성됩니다. 기본적으로 `rg-Ignite-XXX` 리소스 그룹을 찾지만, 값을 덮어씌울수도 있습니다.
 
     ```
     ./scripts/1-update-env-selfguided.sh 
@@ -131,27 +137,27 @@ _Let's get this done_
 
 ## 📊 5. Populate Search Data
 
-1. We have Zava data in `scripts/customization`. Let's create a product index in Azure AI Search. Switch to the `scripts/` folder and run the command:
+1. `scripts/customization` 폴더 내에 Zava 데이터가 있습니다. Azure AI Search에서 제품 인덱스를 만들어봅시다. `scripts/` 폴더로 전환하고 다음 명령을 실행하세요:
 
     ```
     cd scripts/
     python 2-add-product-index.py 
     ```
 
-1. This will first run an RBAC update script to give this user the right roles and access to make updates.
-1. Then it should upload 49 products to a `zava-products` index with semantic search, in Azure AI Search.
+1. 이 스크립트는 먼저 RBAC 업데이트 스크립트를 실행하여 해당 사용자에게 적절한 역할과 업데이트를 할 수 있는 권한을 부여합니다.
+1. 그다음 Azure AI Search에서 의미 검색(semantic search)을 통해 `zava-products` 인덱스에 48개의 제품을 업로드해야 합니다.
 
 <br/>
 
 ## 🎓 6. Add Model Choices
 
-The default AI Agents template will deploy one chat model. The AI Search index creation will require a second text-embedding model.
+기본 AI 에이전트 템플릿은 하나의 채팅 모델을 배포합니다. AI Search 인덱스 생성에는 두 번째 텍스트 임베딩 모델이 필요합니다.
 
-In addition, we want to be able to show _model selection_ with evaluators and graders - so we want to have a suitable set of model choices available. This script makes that happen.
+또한, evaluators와 graders를 통해 _model selection_ 과정을 보여주고 싶기 때문에, 적절한 모델 선택지를 준비하고자 합니다. 이 스크립트가 그런 일을 가능하게 해줍니다.
 
-1. Update the `scripts/customization/add-models.json` with the list of models you want to choose from, for deployments
+1. 배포 시 선택하려고 하는 모델 목록으로 `scripts/customization/add-models.json` 파일을 업데이트하세요.
 
-1. Run this script and provide the selection you actually want deployed:
+1. 이 스크립트를 실행하고 실제로 배포하고 싶은 선택지를 제공하세요:
 
     ```bash
     cd scripts/
@@ -187,7 +193,7 @@ In addition, we want to be able to show _model selection_ with evaluators and gr
     ✓ Model deployment completed successfully!
     ```
 
-1. It will also update the `.env` file with the relevant variable and list:
+1. 또한 관련 변수와 리스트를 포함해 `.env` 파일을 업데이트합니다.:
 
 ```bash
 ADDITIONAL_MODEL_DEPLOYMENTS=[{"name":"model-router","model":{"format":"OpenAI","name":"model-router","version":"2025-05-19"},"sku":{"name":"GlobalStandard","capacity":20}},{"name":"gpt-4o","model":{"format":"OpenAI","name":"gpt-4o","version":"2024-11-20"},"sku":{"name":"GlobalStandard","capacity":20}},{"name":"gpt-4o-mini","model":{"format":"OpenAI","name":"gpt-4o-mini","version":"2024-07-18"},"sku":{"name":"GlobalStandard","capacity":20}},{"name":"gpt-4.1-mini","model":{"format":"OpenAI","name":"gpt-4.1-mini","version":"2025-04-14"},"sku":{"name":"GlobalStandard","capacity":20}},{"name":"gpt-4.1-nano","model":{"format":"OpenAI","name":"gpt-4.1-nano","version":"2025-04-14"},"sku":{"name":"GlobalStandard","capacity":20}},{"name":"o3-mini","model":{"format":"OpenAI","name":"o3-mini","version":"2025-01-31"},"sku":{"name":"GlobalStandard","capacity":20}},{"name":"o4-mini","model":{"format":"OpenAI","name":"o4-mini","version":"2025-04-16"},"sku":{"name":"GlobalStandard","capacity":20}}]

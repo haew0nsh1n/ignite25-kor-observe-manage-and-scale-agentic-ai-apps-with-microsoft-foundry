@@ -102,7 +102,7 @@ create_new_environment() {
     read -p "Enter environment name: " env_name
     read -p "Enter Azure region [swedencentral]: " region
     region=${region:-swedencentral}
-    read -p "Enter subscription ID (optional): " subscription_id
+    read -p "Enter subscription ID: " subscription_id
     
     # Create environment
     if [ -n "$subscription_id" ]; then
