@@ -66,12 +66,16 @@ patch_bicep_file() {
         exit 1
     fi
 
-    # Delete line 59
-    if sed -i "59d" "$BICEP_FILE"; then
-        echo -e "${GREEN}✓ Line 59 deleted successfully${NC}"
+    # Delete line 59 if it contains 'key:'
+    if sed -n '59p' "$BICEP_FILE" | grep -q "key:"; then
+        if sed -i "59d" "$BICEP_FILE"; then
+            echo -e "${GREEN}✓ Line 59 deleted successfully (contained 'key:')${NC}"
+        else
+            echo -e "${RED}✗ Failed to delete line 59${NC}"
+            exit 1
+        fi
     else
-        echo -e "${RED}✗ Failed to delete line 59${NC}"
-        exit 1
+        echo -e "${YELLOW}⚠ Line 59 does not contain 'key:', skipping deletion${NC}"
     fi
 }
 

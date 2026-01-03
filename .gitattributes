@@ -1,0 +1,8 @@
+# Ensure shell scripts use LF on all platforms
+*.sh text eol=lf
+*.py text eol=lf
+# Jupyter 노트북은 바이너리 취급(줄바꿈 변환 방지)
+*.ipynb -text
+# 모든 YAML은 LF
+*.yml text eol=lf
+*.yaml text eol=lf
