@@ -195,14 +195,11 @@ _Let's get this done_
 
 1. 또한 관련 변수와 리스트를 포함해 `.env` 파일을 업데이트합니다.:
 
-```bash
-ADDITIONAL_MODEL_DEPLOYMENTS=[{"name":"model-router","model":{"format":"OpenAI","name":"model-router","version":"2025-05-19"},"sku":{"name":"GlobalStandard","capacity":20}},{"name":"gpt-4o","model":{"format":"OpenAI","name":"gpt-4o","version":"2024-11-20"},"sku":{"name":"GlobalStandard","capacity":20}},{"name":"gpt-4o-mini","model":{"format":"OpenAI","name":"gpt-4o-mini","version":"2024-07-18"},"sku":{"name":"GlobalStandard","capacity":20}},{"name":"gpt-4.1-mini","model":{"format":"OpenAI","name":"gpt-4.1-mini","version":"2025-04-14"},"sku":{"name":"GlobalStandard","capacity":20}},{"name":"gpt-4.1-nano","model":{"format":"OpenAI","name":"gpt-4.1-nano","version":"2025-04-14"},"sku":{"name":"GlobalStandard","capacity":20}},{"name":"o3-mini","model":{"format":"OpenAI","name":"o3-mini","version":"2025-01-31"},"sku":{"name":"GlobalStandard","capacity":20}},{"name":"o4-mini","model":{"format":"OpenAI","name":"o4-mini","version":"2025-04-16"},"sku":{"name":"GlobalStandard","capacity":20}}]
-```
+    ```bash
+    ADDITIONAL_MODEL_DEPLOYMENTS=[{"name":"model-router","model":{"format":"OpenAI","name":"model-router","version":"2025-05-19"},"sku":{"name":"GlobalStandard","capacity":20}},{"name":"gpt-4o","model":{"format":"OpenAI","name":"gpt-4o","version":"2024-11-20"},"sku":{"name":"GlobalStandard","capacity":20}},{"name":"gpt-4o-mini","model":{"format":"OpenAI","name":"gpt-4o-mini","version":"2024-07-18"},"sku":{"name":"GlobalStandard","capacity":20}},{"name":"gpt-4.1-mini","model":{"format":"OpenAI","name":"gpt-4.1-mini","version":"2025-04-14"},"sku":{"name":"GlobalStandard","capacity":20}},{"name":"gpt-4.1-nano","model":{"format":"OpenAI","name":"gpt-4.1-nano","version":"2025-04-14"},"sku":{"name":"GlobalStandard","capacity":20}},{"name":"o3-mini","model":{"format":"OpenAI","name":"o3-mini","version":"2025-01-31"},"sku":{"name":"GlobalStandard","capacity":20}},{"name":"o4-mini","model":{"format":"OpenAI","name":"o4-mini","version":"2025-04-16"},"sku":{"name":"GlobalStandard","capacity":20}}]
+    ```
 
 <br/>
-
-```
-
 
 ## ✅ 7. Validate your `.env` variables
 
